@@ -7,15 +7,11 @@ import { UniqueConstraintError } from "sequelize";
 import logger from "../../lib/logger/logger";
 import { sanitizeUser } from "./helpers";
 
-`POST /users
+`
+POST /users
 GET /users/{userId}
 PUT /users/{userId}
 DELETE /users/{userId}
-
-POST /apikeys/{apiKeyId}/permissions
-GET /apikeys/{apiKeyId}/permissions
-PUT /apikeys/{apiKeyId}/permissions
-DELETE /apikeys/{apiKeyId}/permissions
 `
 
 export const userRouter = router({
