@@ -2,12 +2,15 @@ import express from "express";
 import morgan from "morgan";
 import { configs } from "./utils/configs";
 import logger from "./lib/logger/logger";
+import cors from 'cors';
+
 import { sequelize } from "./db/seq/init";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import { appRouter } from "./api/router/_app";
-import { createContext } from "./api/middlewares/auth";
+import { createContext } from "./api/trpc";
 
 const app = express();
+app.use(cors());
 
 if (configs.Env == "development") {
   app.use(morgan("dev"));

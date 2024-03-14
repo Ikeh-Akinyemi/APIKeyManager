@@ -1,0 +1,71 @@
+/* Combined Styles for Clarity and Distinction */
+
+.header {
+  background: #1C1C1E; /* A deep shade of black for the background */
+  color: white;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.navbar-logo {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.navbar-items {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a, .navbar button {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px; /* Increased spacing between elements */
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.navbar a { /* Styling for navigational links */
+  background: transparent;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #BBBBBB; /* Lighten the link text on hover */
+}
+
+.navbar button { /* Distinct styling for action buttons */
+  background: #2C2C2E;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navbar button:hover {
+  background: #3A3A3C;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar-items {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 0; /* Adjusted for stacked layout */
+  }
+
+  .navbar a, .navbar button {
+    margin-top: 10px;
+    margin-left: 0; /* Stack elements vertically without side margins */
+  }
+
+  .navbar a:first-child, .navbar button:first-child {
+    margin-top: 20px; /* Extra space above the first element in the stack */
+  }
+}
