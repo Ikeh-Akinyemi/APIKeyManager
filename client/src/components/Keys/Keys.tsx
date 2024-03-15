@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Key from "./Key";
 import "./Keys.css";
 import {CreateAPIKeyModal} from "../Modal/Modals";
 
