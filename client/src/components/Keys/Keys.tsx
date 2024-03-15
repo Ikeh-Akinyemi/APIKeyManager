@@ -3,33 +3,6 @@ import Key from "./Key";
 import "./Keys.css";
 import {CreateAPIKeyModal} from "../Modal/Modals";
 
-// Example keys data with all properties
-const keysData = [
-  {
-    id: "1",
-    userId: "User1",
-    key: "abc123",
-    websiteUrl: "https://example.com",
-    name: "API Key 1",
-    permissions: ["read", "write"],
-    expiryDate: "2023-07-01",
-    isActive: true,
-    creationDate: "2021-07-01",
-  },
-  {
-    id: "2",
-    userId: "User2",
-    key: "def456",
-    websiteUrl: "https://example.net",
-    name: "API Key 2",
-    permissions: ["read"],
-    expiryDate: "2023-08-15",
-    isActive: false,
-    creationDate: "2021-08-15",
-  },
-  // Add more keys as needed
-];
-
 const KeysSection: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -52,7 +25,7 @@ const KeysSection: React.FC = () => {
           <span>↓Status</span>
           <span>↓Creation Date</span>
         </div>
-        {keysData.map((key) => (
+        {/* {keysData.map((key) => (
           <Key
             key={key.id}
             id={key.id}
@@ -65,7 +38,7 @@ const KeysSection: React.FC = () => {
             isActive={key.isActive}
             creationDate={key.creationDate}
           />
-        ))}
+        ))} */}
       </div>
       <button className="floating-action-button" onClick={toggleModal}>
         +
