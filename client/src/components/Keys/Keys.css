@@ -16,10 +16,10 @@
 }
 
 .keys-detail-header {
-  font-size: 0.7rem; /* Smaller than the main header */
-  color: #666; /* Less prominent */
-  background-color: #E9ECEF; /* Slightly different background to indicate secondary status */
-  border-bottom: 1px solid #DDD; /* Lighter border */
+  font-size: 0.7rem; 
+  color: #666; 
+  background-color: #E9ECEF; 
+  border-bottom: 1px solid #DDD; 
 }
 
 .keys-header span, .keys-detail-header span {

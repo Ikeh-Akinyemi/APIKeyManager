@@ -15,7 +15,7 @@
 }
 
 .key-summary {
-  padding: 10px 5px; /* Reduced padding for a tighter layout */
+  padding: 10px 5px;
 }
 
 .key:hover {
@@ -37,21 +37,21 @@
 }
 
 .key-details.show {
-  padding: 10px 5px; /* Reduced padding for details as well */
-  max-height: 1000px; /* Ensure enough space for wrapped content */
+  padding: 10px 5px;
+  max-height: 1000px;
 }
 
 .key-summary > p, .key-details > p {
   flex: 1;
-  margin: 5px; /* Reduced margin */
-  padding: 0 5px; /* Reduced padding */
+  margin: 5px; 
+  padding: 0 5px;
   text-align: center;
   box-sizing: border-box;
 }
 
 .key-details > p {
   border-right: 1px solid #30363d;
-  color: #C9D1D9; /* Ensuring contrast against the dark background */
+  color: #C9D1D9;
 }
 
 .key-details > p:last-child {

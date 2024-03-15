@@ -12,7 +12,6 @@ const KeysSection: React.FC = () => {
       <div className="keys-section">
         <div className="keys-header">
           {" "}
-          {/* Add this line for the header */}
           <span>Name</span>
           <span>Website</span>
           <span>Owner ID</span>

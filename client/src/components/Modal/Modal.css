@@ -3,7 +3,7 @@
   right: 20px;
   bottom: 20px;
   z-index: 100;
-  background-color: #4CAF50; /* Adjusted for better visibility */
+  background-color: #4CAF50; 
   color: white;
   border: none;
   border-radius: 50%;
@@ -13,7 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Added for depth */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3); 
   cursor: pointer;
 }
 
@@ -70,8 +70,8 @@
 
 .modal button {
   padding: 10px;
-  margin-top: 10px; /* Adds space above the buttons */
-  width: 100%; /* Full width buttons */
+  margin-top: 10px; 
+  width: 100%;
   border: none;
   border-radius: 4px;
   font-size: 14px;

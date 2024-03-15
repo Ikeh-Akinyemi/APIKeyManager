@@ -1,4 +1,3 @@
-// Navbar.tsx remains largely the same, but ensure class assignments match the new CSS
 import { useState } from "react";
 import "./Navbar.css";
 import { LoginModal, SignupModal } from "../Modal/Modals";

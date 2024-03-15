@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Key.css"; // Confirm the CSS file path is correct
+import "./Key.css";
 
 interface KeyProps {
   id: string;

@@ -36,10 +36,9 @@ const CreateAPIKeyModal: React.FC<CreateAPIKeyModalProps> = ({ closeModal }) => 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Implement your form submission logic here
-    closeModal(); // Close the modal upon submission
+    closeModal(); 
   };
 
-  // The form JSX goes here, using handleInputChange for each input's onChange
   return (
     <div className="modal-overlay">
       <div className="modal">
@@ -73,7 +72,6 @@ const SignupModal: React.FC<SignupModalProps>  = ({ onClose }) => {
         <span className="sp_close" onClick={onClose}>&times;</span>
         <h2>Signup</h2>
         <form>
-          {/* Form fields */}
           <input type="text" placeholder="Name" />
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
@@ -91,7 +89,6 @@ const LoginModal: React.FC<SignupModalProps>  = ({ onClose }) => {
         <span className="sp_close" onClick={onClose}>&times;</span>
         <h2>Login</h2>
         <form>
-          {/* Form fields */}
           <input type="email" placeholder="Email" />
           <input type="password" placeholder="Password" />
           <button type="submit">Login</button>

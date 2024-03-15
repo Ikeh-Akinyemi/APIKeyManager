@@ -1,33 +1,33 @@
 .hero {
-  background: #F8F9FA; /* A light shade of white for the background */
-  color: #343A40; /* Dark grey for text, ensuring contrast */
+  background: #F8F9FA;
+  color: #343A40; 
   padding: 40px 20px;
-  text-align: center; /* Center the content */
-  border-radius: 0; /* Removing rounded corners for a flush fit under the navbar */
-  margin: 0 auto; /* Remove external margins */
-  max-width: 100%; /* Allow the hero to fill the width */
+  text-align: center;
+  border-radius: 0; 
+  margin: 0 auto; 
+  max-width: 100%; 
 }
 
 .hero h1 {
-  margin-bottom: 20px; /* Space between the title and the description */
-  color: #212529; /* Slightly darker grey for better contrast */
+  margin-bottom: 20px; 
+  color: #212529; 
 }
 
 .hero p {
-  margin-bottom: 30px; /* Space between the description and the search input */
-  color: #6C757D; /* A medium grey for readable contrast */
+  margin-bottom: 30px; 
+  color: #6C757D;
 }
 
 .hero input[type="search"] {
   padding: 10px 15px;
-  width: calc(100% - 330px); /* Adjust width to account for padding */
-  border: 1px solid #CED4DA; /* Light grey border for subtle contrast */
-  border-radius: 5px; /* Rounded corners for the input */
-  background: #E9ECEF; /* Very light grey background for the input */
-  color: #495057; /* Dark grey for input text */
-  outline: none; /* Remove the default focus outline */
+  width: calc(100% - 330px);
+  border: 1px solid #CED4DA; 
+  border-radius: 5px; 
+  background: #E9ECEF; 
+  color: #495057; 
+  outline: none;
 }
 
 .hero input[type="search"]::placeholder {
-  color: #ADB5BD; /* Light grey text for the placeholder for contrast */
+  color: #ADB5BD; 
 }

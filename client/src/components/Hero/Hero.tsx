@@ -1,5 +1,5 @@
 import React from 'react';
-import './Hero.css'; // Make sure to create this CSS file
+import './Hero.css';
 
 const Hero: React.FC = () => {
   return (
