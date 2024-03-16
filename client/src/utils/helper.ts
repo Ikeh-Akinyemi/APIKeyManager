@@ -1,6 +1,6 @@
 interface AccessToken {
   token: string;
-  expiryTime: string; // Should be a valid date string
+  expiryTime: string;
 }
 
 // saveTokenToCookie saves the accessToken and expiryTime to a cookie
