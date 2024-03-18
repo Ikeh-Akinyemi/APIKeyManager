@@ -9,7 +9,11 @@ export const createContext = async ({ req, res }: trpcExpress.CreateExpressConte
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
-    token = req.headers.authorization.split(" ")[1];
+    let authVals = req.headers.authorization.split(" ");
+    
+    if (authVals.length == 2) {
+      token = authVals[1];
+    }
   }
 
   if (token === "") {
