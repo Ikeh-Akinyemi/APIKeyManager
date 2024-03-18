@@ -56,7 +56,7 @@ APIKey.init({
     onDelete: "CASCADE",
     onUpdate: "CASCADE"
   },
-  key: {
+  token: {
     type: DataTypes.STRING(255),
     allowNull: false,
     unique: true
