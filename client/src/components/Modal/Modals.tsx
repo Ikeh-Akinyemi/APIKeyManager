@@ -7,29 +7,21 @@ interface CreateAPIKeyModalProps {
 
 interface FormData {
   name: string;
-  userId: string;
   websiteUrl: string;
-  permissions: string;
-  expiryDate: string;
-  isActive: boolean;
 }
 
 
 const CreateAPIKeyModal: React.FC<CreateAPIKeyModalProps> = ({ closeModal }) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    userId: '',
     websiteUrl: '',
-    permissions: '',
-    expiryDate: '',
-    isActive: false,
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData(prevFormData => ({
       ...prevFormData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: value,
     }));
   };
 
@@ -44,14 +36,7 @@ const CreateAPIKeyModal: React.FC<CreateAPIKeyModalProps> = ({ closeModal }) => 
       <div className="modal">
         <form onSubmit={handleSubmit}>
           <input type="text" name="name" placeholder="Name" required value={formData.name} onChange={handleInputChange} />
-          <input type="text" name="userId" placeholder="User ID" required value={formData.userId} onChange={handleInputChange} />
           <input type="url" name="websiteUrl" placeholder="Website URL" required value={formData.websiteUrl} onChange={handleInputChange} />
-          <input type="text" name="permissions" placeholder="Permissions (comma-separated)" required value={formData.permissions} onChange={handleInputChange} />
-          <input type="date" name="expiryDate" placeholder="Expiry Date" required value={formData.expiryDate} onChange={handleInputChange} />
-          <div className="checkbox-container">
-            <input type="checkbox" name="isActive" id="isActive" checked={formData.isActive} onChange={handleInputChange} />
-            <label htmlFor="isActive">Active</label>
-          </div>
           <button type="submit" className="submit-btn">Submit</button>
           <button type="button" onClick={closeModal} className="cancel-btn">Cancel</button>
         </form>
