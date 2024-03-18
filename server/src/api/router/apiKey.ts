@@ -2,7 +2,7 @@ import { TRPCError } from "@trpc/server";
 import { APIKey } from "../../db/seq/init";
 import pasetoMaker from "../../lib/paseto/paseto";
 import AppError from "../../utils/error";
-import { sanitizeToken } from "../../utils/misc";
+import { sanitizeToken, truncate } from "../../utils/misc";
 import { protectedProcedure, router } from "../trpc"
 import logger from "../../lib/logger/logger";
 import { z } from "zod";
@@ -24,14 +24,14 @@ export const apiKeyRouter = router({
 
     try {
       const { token, payload } = await pasetoMaker.createToken(session.userId, session.email, 60 * 2, {});
-      const apiKey = sanitizeToken(token);
+      const apiKey = truncate(sanitizeToken(token));
       const res = await APIKey.create({
-        userId: session.userId, key: apiKey,
+        userId: session.userId, token: apiKey,
         websiteUrl: opts.input.websiteUrl, name: opts.input.name,
         expiryDate: payload.expiredAt,
         permissions: `READ`
       });
-
+      
       return {
         status: "success",
         message: "API Key created successfully",
