@@ -28,7 +28,7 @@ export const authRouter = router({
       throw new TRPCError({ code: "UNAUTHORIZED", message: "Invalid credentials" });
     }
 
-    const { token, payload } = await pasetoMaker.createToken(user.getDataValue("id"), user.getDataValue("email"), 25, {});
+    const { token, payload } = await pasetoMaker.createToken(user.getDataValue("id"), user.getDataValue("email"), 60, {});
 
     return {
       status: "success",
