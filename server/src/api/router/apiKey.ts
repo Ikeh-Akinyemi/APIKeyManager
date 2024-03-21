@@ -1,11 +1,12 @@
 import { TRPCError } from "@trpc/server";
 import { APIKey } from "../../db/seq/init";
 import pasetoMaker from "../../lib/paseto/paseto";
-import AppError from "../../utils/error";
 import { sanitizeToken, truncate } from "../../utils/misc";
 import { protectedProcedure, router } from "../trpc"
 import logger from "../../lib/logger/logger";
 import { z } from "zod";
+import { observable } from '@trpc/server/observable';
+import { Op } from "sequelize";
 
 `
 POST /apikeys
@@ -31,7 +32,7 @@ export const apiKeyRouter = router({
         expiryDate: payload.expiredAt,
         permissions: `READ`
       });
-      
+
       return {
         status: "success",
         message: "API Key created successfully",
@@ -136,5 +137,39 @@ export const apiKeyRouter = router({
       logger.error(error);
       throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: error.message });
     }
-  })
-})
+  }),
+  keyExpiryNotification: protectedProcedure.subscription(async () => {
+    return observable<{ id: number; name: string; websiteUrl: string }>((emit) => {
+      const intervalTime = 200;
+      const checkInterval = 10 * 60000;
+      
+      const timer = setInterval(async () => {
+        try {
+          const now = new Date();
+          const tenMinsLater = new Date(now.getTime() + checkInterval);
+  
+          const expiringKeys = await APIKey.findAll({
+            where: {
+              expiryDate: {
+                [Op.gt]: now,
+                [Op.lt]: tenMinsLater
+              }
+            }
+          });
+  
+          for (const key of expiringKeys) {
+            const { id, name, websiteUrl } = key.get({ plain: true });
+            emit.next({ id, name, websiteUrl });
+          }
+        } catch (error) {
+          logger.error(`Error fetching expiring keys: ${error}`);
+          emit.error(error);
+        }
+      }, intervalTime);
+  
+      return () => {
+        clearInterval(timer);
+      };
+    });
+  }),
+});
