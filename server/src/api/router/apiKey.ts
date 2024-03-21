@@ -165,7 +165,6 @@ export const apiKeyRouter = router({
                 logger.error(`Error fetching expiring keys: ${error}`);
                 emit.error(error);
             }
-            console.log("Heyyy!!");
         }, intervalTime);
 
         return () => {
