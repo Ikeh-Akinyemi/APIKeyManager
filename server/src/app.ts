@@ -36,7 +36,7 @@ export const server = app.listen(configs.Port, () => {
 
 
 const wss = new ws.Server({ server });
-const handler = applyWSSHandler<AppRouter>({ wss, router: appRouter, createContext });
+applyWSSHandler<AppRouter>({ wss, router: appRouter, createContext });
 
 wss.on('connection', (ws) => {
   logger.info(`➕➕ Connection (${wss.clients.size})`);
@@ -45,21 +45,29 @@ wss.on('connection', (ws) => {
   });
 });
 
-// Handling graceful shutdown
-const shutdown = async (): Promise<void> => {
-  logger.info("Graceful shutdown of server started...");
+const shutdown = async () => {
+  logger.info("Graceful shutdown initiated...");
 
-  server.close(async () => {
-    logger.info("closing db connection...");
-    await sequelize.close();
+  wss.close(() => {
+    logger.info("WebSocket server closed.");
 
-    handler.broadcastReconnectNotification();
-    wss.close();
+    server.close(async () => {
+      logger.info("HTTP server closed.");
 
-    logger.info("Server shutdown completed");
-    process.exit(0);
+      logger.info("Closing database connections...");
+      await sequelize.close();
+      logger.info("Database connections closed.");
+
+      logger.info("Graceful shutdown completed.");
+      process.exit(0);
+    });
+  });
+
+  wss.clients.forEach((client) => {
+    client.send(JSON.stringify({ type: "info", message: "Server is shutting down" }));
+    client.close();
   });
 };
 
-process.on("SIGINT", shutdown);
-process.on("SIGTERM", shutdown);
+process.on('SIGTERM', shutdown);
+process.on('SIGINT', shutdown);
