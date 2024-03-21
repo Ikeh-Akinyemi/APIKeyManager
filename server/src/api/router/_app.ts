@@ -1,4 +1,3 @@
-import logger from "../../lib/logger/logger";
 import { publicProcedure, router, t } from "../trpc";
 import { apiKeyRouter } from "./apiKey";
 import { authRouter } from "./auth";
