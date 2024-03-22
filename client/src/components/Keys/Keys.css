@@ -1,0 +1,28 @@
+.keys-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.keys-header, .keys-detail-header {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.keys-header {
+  background-color: #F0F3F6;
+  border-bottom: 2px solid #CED4DA;
+  font-weight: bold;
+}
+
+.keys-detail-header {
+  font-size: 0.7rem; /* Smaller than the main header */
+  color: #666; /* Less prominent */
+  background-color: #E9ECEF; /* Slightly different background to indicate secondary status */
+  border-bottom: 1px solid #DDD; /* Lighter border */
+}
+
+.keys-header span, .keys-detail-header span {
+  flex: 1;
+  text-align: center;
+}

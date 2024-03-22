@@ -1,4 +1,3 @@
-import logger from "../lib/logger/logger";
 import AppError from "./error";
 
 /**
@@ -37,4 +36,14 @@ export function sanitizeToken(pasetoToken: string): string {
     return subStrs[2]
   }
   throw new AppError(`failed to split token: ${pasetoToken}`);
+}
+
+/**
+ * truncate reduces a string to a fix length
+ * @param {string} str - The string with a variable length
+ * @returns {string} - A fixed length of string.
+ */
+export function truncate(str: string): string {
+  const maxLength = 64;
+  return str.length > maxLength ? str.slice(0, maxLength) : str;
 }

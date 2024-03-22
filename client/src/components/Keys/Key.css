@@ -1,0 +1,65 @@
+.key {
+  border: 1px solid #CED4DA;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.key-summary, .key-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FFFFFF;
+}
+
+.key-summary {
+  padding: 10px 5px; /* Reduced padding for a tighter layout */
+}
+
+.key:hover {
+  background-color: #F0F3F6;
+}
+
+.key:active {
+  background-color: #DEE2E6;
+}
+
+.key-details {
+  flex-wrap: wrap;
+  background: #0D1117;
+  color: #C9D1D9;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.key-details.show {
+  padding: 10px 5px; /* Reduced padding for details as well */
+  max-height: 1000px; /* Ensure enough space for wrapped content */
+}
+
+.key-summary > p, .key-details > p {
+  flex: 1;
+  margin: 5px; /* Reduced margin */
+  padding: 0 5px; /* Reduced padding */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.key-details > p {
+  border-right: 1px solid #30363d;
+  color: #C9D1D9; /* Ensuring contrast against the dark background */
+}
+
+.key-details > p:last-child {
+  border-right: none;
+}
+
+.key-details p.token {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
