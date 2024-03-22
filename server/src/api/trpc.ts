@@ -1,15 +1,20 @@
 import { TRPCError, initTRPC } from "@trpc/server";
-import * as trpcExpress from "@trpc/server/adapters/express";
 import pasetoMaker, { Payload } from "../lib/paseto/paseto";
+import type { CreateHTTPContextOptions } from '@trpc/server/adapters/standalone';
+import type { CreateWSSContextFnOptions } from '@trpc/server/adapters/ws';
 
-export const createContext = async ({ req, res }: trpcExpress.CreateExpressContextOptions) => {
+export const createContext = async ({ req, res }: CreateHTTPContextOptions | CreateWSSContextFnOptions) => {
   let token: string = "";
 
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
-    token = req.headers.authorization.split(" ")[1];
+    let authVals = req.headers.authorization.split(" ");
+    
+    if (authVals.length == 2) {
+      token = authVals[1];
+    }
   }
 
   if (token === "") {

@@ -1,14 +1,21 @@
-// Navbar.tsx remains largely the same, but ensure class assignments match the new CSS
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { LoginModal, SignupModal } from "../Modal/Modals";
+import { getAuthCookie } from "../../utils/helper";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleLogin = () => {
-    setIsLoggedIn(!isLoggedIn);
+    const accessToken = getAuthCookie();
+    if (accessToken) {
+      setIsLoggedIn(true);
+    }
   };
+  
+  useEffect(() => {
+    toggleLogin();
+  }, []);
 
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -31,7 +38,6 @@ const Navbar = () => {
               <button onClick={() => setShowSignupModal(true)}>Signup</button>
               <button
                 onClick={(e) => {
-                  toggleLogin();
                   const target = e.target as HTMLElement;
                   if (target.innerText === "Login") {
                     setShowLoginModal(true);
@@ -47,7 +53,10 @@ const Navbar = () => {
           <SignupModal onClose={() => setShowSignupModal(false)} />
         )}
         {showLoginModal && (
-          <LoginModal onClose={() => setShowLoginModal(false)} />
+          <LoginModal onClose={() => {
+            toggleLogin();
+            setShowLoginModal(false);
+          }} />
         )}
       </nav>
     </div>

@@ -1,28 +1,27 @@
 import React, { useState } from "react";
 import "./Key.css"; // Confirm the CSS file path is correct
 
-interface KeyProps {
+export interface KeyProps {
   id: string;
   userId: string;
-  keyVal: string;
+  token: string;
   websiteUrl: string;
   name: string;
   permissions: string[];
   expiryDate: string;
   isActive: boolean;
-  creationDate: string;
+  createdAt: string;
 }
 
 const Key: React.FC<KeyProps> = ({
-  id,
   userId,
-  keyVal,
+  token,
   websiteUrl,
   name,
   permissions,
   expiryDate,
   isActive,
-  creationDate,
+  createdAt,
 }) => {
   const [showDetails, setShowDetails] = useState(false);
 
@@ -36,14 +35,14 @@ const Key: React.FC<KeyProps> = ({
         <p>{name}</p>
         <p>{websiteUrl}</p>
         <p>{userId}</p>
-        <p>{expiryDate}</p>
+        <p>{expiryDate.substring(0, 10)}</p>
       </div>
       {showDetails && (
         <div className={`key-details ${showDetails ? "show" : ""}`}>
-          <p>{keyVal}</p>
+          <p className="token">{token}</p>
           <p>{permissions.join(", ")}</p>
           <p>{isActive ? "Active" : "Inactive"}</p>
-          <p> {creationDate}</p>
+          <p> {createdAt.substring(0, 10)}</p>
         </div>
       )}
     </div>

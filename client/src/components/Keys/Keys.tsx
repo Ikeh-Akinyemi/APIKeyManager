@@ -1,46 +1,27 @@
-import React, { useState } from "react";
-import Key from "./Key";
+import React, { useEffect, useState } from "react";
+import Key, { KeyProps } from "./Key";
 import "./Keys.css";
-import {CreateAPIKeyModal} from "../Modal/Modals";
-
-// Example keys data with all properties
-const keysData = [
-  {
-    id: "1",
-    userId: "User1",
-    key: "abc123",
-    websiteUrl: "https://example.com",
-    name: "API Key 1",
-    permissions: ["read", "write"],
-    expiryDate: "2023-07-01",
-    isActive: true,
-    creationDate: "2021-07-01",
-  },
-  {
-    id: "2",
-    userId: "User2",
-    key: "def456",
-    websiteUrl: "https://example.net",
-    name: "API Key 2",
-    permissions: ["read"],
-    expiryDate: "2023-08-15",
-    isActive: false,
-    creationDate: "2021-08-15",
-  },
-  // Add more keys as needed
-];
+import { CreateAPIKeyModal } from "../Modal/Modals";
+import { trpc } from "../../utils/trpc";
 
 const KeysSection: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => setShowModal((prevShowModal) => !prevShowModal);
 
-  const toggleModal = () => setShowModal(!showModal);
+  const [keys, setKeys] = useState<KeyProps[]>([]);
+  const { data: { data: resp } = {} } = trpc.apikeys.getAPIKeys.useQuery();
+
+  useEffect(() => {
+    if (resp?.apiKeys) {
+      setKeys(resp.apiKeys as KeyProps[]);
+    }
+  }, [resp]);
 
   return (
     <>
       <div className="keys-section">
         <div className="keys-header">
           {" "}
-          {/* Add this line for the header */}
           <span>Name</span>
           <span>Website</span>
           <span>Owner ID</span>
@@ -52,18 +33,18 @@ const KeysSection: React.FC = () => {
           <span>↓Status</span>
           <span>↓Creation Date</span>
         </div>
-        {keysData.map((key) => (
+        {keys.map((key) => (
           <Key
-            key={key.id}
+            key={`${key.id}-${key.token}`}
             id={key.id}
             userId={key.userId}
-            keyVal={key.key}
+            token={key.token}
             websiteUrl={key.websiteUrl}
             name={key.name}
             permissions={key.permissions}
             expiryDate={key.expiryDate}
             isActive={key.isActive}
-            creationDate={key.creationDate}
+            createdAt={key.createdAt}
           />
         ))}
       </div>
