@@ -6,7 +6,7 @@ const KeyExpiryAlerts = () => {
   const keyExpiryData = useKeyExpirySubscription();
 
   useEffect(() => {
-    if (keyExpiryData) {
+    if (keyExpiryData.name !== "") {
       toast.warn(`Your key "${keyExpiryData.name}" is expiring soon. Please renew it.`);
     }
   }, [keyExpiryData]);
