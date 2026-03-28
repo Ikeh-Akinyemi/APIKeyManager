@@ -11,6 +11,12 @@ function sanitizeUser(dbResult: User): any {
   return user;
 }
 
-export {
-  sanitizeUser
+/**
+ * Truncates a string to a maximum length, appending an ellipsis if truncated.
+ * @param {string} str - The string to truncate.
+ * @param {number} maxLength - The maximum allowed length before truncation.
+ * @returns {string} - The original string if within bounds, or a truncated version with '...' appended.
+ */
+function truncate(str: string, maxLength: number = 32): string {
+  return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
 }
