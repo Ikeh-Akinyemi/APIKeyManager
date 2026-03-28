@@ -13,7 +13,7 @@ export const sequelize = new Sequelize({
 
 class User extends Model { }
 User.init({
-  id: {
+  userId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
