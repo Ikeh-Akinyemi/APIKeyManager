@@ -23,9 +23,9 @@ export const createContext = async ({ req, res }: CreateHTTPContextOptions | Cre
 
   let payload: Payload;
   try {
-    payload = await pasetoMaker.verifyToken(token);
-  } catch (error: any) {
-    throw new TRPCError({ code: "UNAUTHORIZED", message: error.message });
+      payload = await pasetoMaker.verifyToken(token);
+    } catch (error: any) {
+      return { session: null };
   }
 
   return {
@@ -39,10 +39,6 @@ const t = initTRPC.context<Context>().create();
 
 const protectedProcedure = t.procedure.use(t.middleware(async (opts) => {
   const { session } = opts.ctx;
-  if (!session) {
-    throw new TRPCError({ code: "UNAUTHORIZED", message: "You are not logged in! Please log in to get access." });
-  }
-
   return opts.next({
     ctx: {
       session
